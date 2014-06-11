@@ -81,21 +81,30 @@
     // test if a specific row on this board contains a conflict
     // test on placement
     hasRowConflictAt: function(rowIndex) {
-      console.log(this.get(rowIndex));
-      //iterate through row
-        //if there is more than one value turned on, return false
-        //else return true
-      return false; // fixme
+      var count = 0;
+      var results = false;
+      var currentRow = this.rows()[rowIndex];
+      for ( var i = 0 ; i < currentRow.length ; i++ ){
+        if ( currentRow[i] === 1 ){
+          count++;
+        }
+        if ( count > 1 ){
+          results = true;
+        }
+      }
+      return results;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      //iterate through each row on matrix
-        //invoke hasRowConflict() on each row
-        // if function returns true in any row return true
-        // else return false
-
-      return false; // fixme
+      var results = false;
+      var eachRow = this.rows();
+      for(var i = 0; i < eachRow.length; i++){
+        if(this.hasRowConflictAt(i) === true){
+          results = true;
+        }
+      }
+      return results;
     },
 
 
