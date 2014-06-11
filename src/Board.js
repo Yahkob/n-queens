@@ -26,6 +26,7 @@
 
     togglePiece: function(rowIndex, colIndex) {
       this.get(rowIndex)[colIndex] = + !this.get(rowIndex)[colIndex];
+      console.log(this._getFirstRowColumnIndexForMajorDiagonalOn(rowIndex, colIndex));
       this.trigger('change');
     },
 
@@ -78,12 +79,22 @@
     // --------------------------------------------------------------
     //
     // test if a specific row on this board contains a conflict
+    // test on placement
     hasRowConflictAt: function(rowIndex) {
+      console.log(this.get(rowIndex));
+      //iterate through row
+        //if there is more than one value turned on, return false
+        //else return true
       return false; // fixme
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
+      //iterate through each row on matrix
+        //invoke hasRowConflict() on each row
+        // if function returns true in any row return true
+        // else return false
+
       return false; // fixme
     },
 
@@ -94,11 +105,17 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      // iterate over rows
+        // check row at column index for conflicts (row[i][colIndex])
       return false; // fixme
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
+      // iterate through values in row[0]
+        // hasColConflict on each value
+          // if has colConflict, return false
+      // if no colConflicts return true
       return false; // fixme
     },
 
@@ -109,6 +126,7 @@
     //
     // test if a specific major diagonal on this board contains a conflict
     hasMajorDiagonalConflictAt: function(majorDiagonalColumnIndexAtFirstRow) {
+
       return false; // fixme
     },
 
