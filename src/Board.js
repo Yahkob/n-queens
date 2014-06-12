@@ -169,8 +169,9 @@
     hasAnyMajorDiagonalConflicts: function() {
       // iterate from -n to n in row0
       var rowZero = this.rows()[0];
-      for (var i = -(rowZero.length); i < rowZero.length; i++){
-        if(this.hasMajorDiagonalConflictAt(rowZero[i])){
+      for (var i = -(rowZero.length) + 1; i < rowZero.length; i++){
+
+        if(this.hasMajorDiagonalConflictAt(i)){
           return true;
         }
       }
@@ -187,17 +188,14 @@
       var count = 0;
       var row = 0;
       var column = minorDiagonalColumnIndexAtFirstRow;
-
-      //iterate from columns: minorDiagonalColumnIndexAtFirstRow to 0
       for (var i = column; i >= 0; i--){
-        // console.log('after for loop' + this.rows()[row][i]);
         if(this.rows()[row] !== undefined){
           if (this.rows()[row][i] === 1){
             count++;
           }
         }
         row++;
-        if(count >= 2){
+        if(count > 1){
           return true;
         }
       }
@@ -207,16 +205,14 @@
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      // ***Partially working. Works if there are 3 queens in a diagonal.***
       var rowZero = this.rows()[0];
-      for (var i = rowZero.length * 2; i > 0; i--){
-        if(this.hasMinorDiagonalConflictAt(rowZero[i])){
+      for (var i = rowZero.length * 2; i >= 0; i--){
+        if(this.hasMinorDiagonalConflictAt(i)){
           return true;
         }
       }
       return false;
     }
-
     /*--------------------  End of Helper Functions  ---------------------*/
 
 
