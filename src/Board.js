@@ -82,29 +82,27 @@
     // test on placement
     hasRowConflictAt: function(rowIndex) {
       var count = 0;
-      var results = false;
       var currentRow = this.rows()[rowIndex];
       for ( var i = 0 ; i < currentRow.length ; i++ ){
         if ( currentRow[i] === 1 ){
           count++;
         }
         if ( count > 1 ){
-          results = true;
+          return true;
         }
       }
-      return results;
+      return false;
     },
 
     // test if any rows on this board contain conflicts
     hasAnyRowConflicts: function() {
-      var results = false;
-      var eachRow = this.rows();
-      for(var i = 0; i < eachRow.length; i++){
-        if(this.hasRowConflictAt(i) === true){
-          results = true;
+      var currentRow = this.rows();
+      for(var i = 0; i < currentRow.length; i++){
+        if(this.hasRowConflictAt(i)){
+          return true;
         }
       }
-      return results;
+      return false;
     },
 
 
@@ -114,18 +112,30 @@
     //
     // test if a specific column on this board contains a conflict
     hasColConflictAt: function(colIndex) {
+      var count = 0;
+      var currentRow = this.rows();
       // iterate over rows
-        // check row at column index for conflicts (row[i][colIndex])
-      return false; // fixme
+      for(var i = 0; i < currentRow.length; i++){
+        if(currentRow[i][colIndex] === 1){
+          count++;
+        }
+        if(count > 1){
+          return true;
+        }
+      }
+      // check row at column index for conflicts (row[i][colIndex])
+      return false;
     },
 
     // test if any columns on this board contain conflicts
     hasAnyColConflicts: function() {
-      // iterate through values in row[0]
-        // hasColConflict on each value
-          // if has colConflict, return false
-      // if no colConflicts return true
-      return false; // fixme
+      var currentRow = this.rows();
+      for ( var i = 0; i < currentRow.length; i++){
+        if( this.hasColConflictAt(i)){
+          return true;
+        }
+      }
+      return false;
     },
 
 
