@@ -184,12 +184,37 @@
     //
     // test if a specific minor diagonal on this board contains a conflict
     hasMinorDiagonalConflictAt: function(minorDiagonalColumnIndexAtFirstRow) {
-      return false; // fixme
+      var count = 0;
+      var row = 0;
+      var column = minorDiagonalColumnIndexAtFirstRow;
+
+      //iterate from columns: minorDiagonalColumnIndexAtFirstRow to 0
+      for (var i = column; i >= 0; i--){
+        // console.log('after for loop' + this.rows()[row][i]);
+        if(this.rows()[row] !== undefined){
+          if (this.rows()[row][i] === 1){
+            count++;
+          }
+        }
+        row++;
+        if(count >= 2){
+          return true;
+        }
+      }
+
+      return false;
     },
 
     // test if any minor diagonals on this board contain conflicts
     hasAnyMinorDiagonalConflicts: function() {
-      return false; // fixme
+      // ***Partially working. Works if there are 3 queens in a diagonal.***
+      var rowZero = this.rows()[0];
+      for (var i = rowZero.length * 2; i > 0; i--){
+        if(this.hasMinorDiagonalConflictAt(rowZero[i])){
+          return true;
+        }
+      }
+      return false;
     }
 
     /*--------------------  End of Helper Functions  ---------------------*/
